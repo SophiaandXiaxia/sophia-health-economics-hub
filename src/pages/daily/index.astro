@@ -2,6 +2,8 @@
 import Base from "../../layouts/Base.astro";
 import { getCollection } from "astro:content";
 
+const BASE = "/sophia-health-economics-hub";
+
 const allDaily = await getCollection("daily");
 const sortedDaily = allDaily.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -28,7 +30,7 @@ function formatDate(date: Date) {
     {
       sortedDaily.map((post) => (
         <div class="card">
-          <a href={`/daily/${post.id.replace(/\.md$/, "")}`}>
+          <a href={`${BASE}/daily/${post.id.replace(/\.md$/, "")}`}>
             <div class="article-meta">
               <time datetime={post.data.date.toISOString()}>
                 {formatDate(post.data.date)}
