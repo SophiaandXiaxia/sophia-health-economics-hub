@@ -2,6 +2,8 @@
 import Base from "../layouts/Base.astro";
 import { getCollection } from "astro:content";
 
+const BASE = "/sophia-health-economics-hub";
+
 const allDaily = await getCollection("daily");
 const sortedDaily = allDaily.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -36,7 +38,7 @@ function postSlug(id: string) {
         </p>
         <div style="margin-top: 1.25rem;">
           <a
-            href={`/daily/${latestPost.id.replace(/\.md$/, "")}`}
+            href={`${BASE}/daily/${latestPost.id.replace(/\.md$/, "")}`}
             style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.2); color: white; padding: 0.5rem 1.1rem; border-radius: 8px; text-decoration: none; font-size: 0.88rem; font-weight: 500; backdrop-filter: blur(4px); transition: all 0.2s;"
           >
             阅读全文 →
@@ -53,7 +55,7 @@ function postSlug(id: string) {
         <div class="section-title">📅 往期小知识</div>
         {recentPosts.map((post) => (
           <div class="card">
-            <a href={`/daily/${post.id.replace(/\.md$/, "")}`}>
+            <a href={`${BASE}/daily/${post.id.replace(/\.md$/, "")}`}>
               <div class="article-meta">
                 <time datetime={post.data.date.toISOString()}>
                   {formatDate(post.data.date)}
@@ -79,7 +81,7 @@ function postSlug(id: string) {
         ))}
         <div style="text-align: center; margin-top: 1.5rem;">
           <a
-            href="/daily"
+            href={`${BASE}/daily`}
             style="display: inline-flex; align-items: center; gap: 0.4rem; color: var(--color-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 0.5rem 1.2rem; border: 1.5px solid var(--color-primary-light); border-radius: 8px; transition: all 0.2s;"
           >
             查看全部 →
