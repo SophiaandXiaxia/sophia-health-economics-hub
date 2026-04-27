@@ -2,11 +2,11 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig({
-  site: 'https://sophiahe.github.io',
-  base: '/he-knowledge',
+export default defineConfig({zhe
+  site: 'https://sophiaandxiaxia.github.io',
+  base: '/sophia-health-economics-hub',
   output: 'static',
   build: {
-    assets: '_assets',
+    assets: 'assets',
   },
 });
