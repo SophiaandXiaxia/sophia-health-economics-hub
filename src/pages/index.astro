@@ -1,0 +1,147 @@
+---
+import Base from "../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+const allDaily = await getCollection("daily");
+const sortedDaily = allDaily.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const latestPost = sortedDaily[0];
+const recentPosts = sortedDaily.slice(1, 5);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("zh-CN", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+function postSlug(id: string) {
+  return id.replace(/\.md$/, "");
+}
+---
+
+<Base title="🦐 健康经济学知识站 | Health Economics Hub">
+  <!-- Hero: Latest Knowledge -->
+  {
+    latestPost && (
+      <div class="hero-card">
+        <p style="font-size: 0.78rem; opacity: 0.7; margin-bottom: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase;">
+          🦐 今日小知识
+        </p>
+        <h2>{latestPost.data.title}</h2>
+        <p>
+          {latestPost.data.summary || "点击阅读完整内容 →"}
+        </p>
+        <div style="margin-top: 1.25rem;">
+          <a
+            href={`/daily/${latestPost.id.replace(/\.md$/, "")}`}
+            style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.2); color: white; padding: 0.5rem 1.1rem; border-radius: 8px; text-decoration: none; font-size: 0.88rem; font-weight: 500; backdrop-filter: blur(4px); transition: all 0.2s;"
+          >
+            阅读全文 →
+          </a>
+        </div>
+      </div>
+    )
+  }
+
+  <!-- Recent Archive -->
+  {
+    recentPosts.length > 0 && (
+      <>
+        <div class="section-title">📅 往期小知识</div>
+        {recentPosts.map((post) => (
+          <div class="card">
+            <a href={`/daily/${post.id.replace(/\.md$/, "")}`}>
+              <div class="article-meta">
+                <time datetime={post.data.date.toISOString()}>
+                  {formatDate(post.data.date)}
+                </time>
+              </div>
+              <h3
+                style="font-size: 1.05rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.4rem; font-family: 'Noto Serif SC', serif;"
+              >
+                {post.data.title}
+              </h3>
+              {post.data.summary && (
+                <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;">
+                  {post.data.summary}
+                </p>
+              )}
+              <div style="margin-top: 0.75rem;">
+                {post.data.tags?.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </a>
+          </div>
+        ))}
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <a
+            href="/daily"
+            style="display: inline-flex; align-items: center; gap: 0.4rem; color: var(--color-primary); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 0.5rem 1.2rem; border: 1.5px solid var(--color-primary-light); border-radius: 8px; transition: all 0.2s;"
+          >
+            查看全部 →
+          </a>
+        </div>
+      </>
+    )
+  }
+
+  <!-- Coming Soon Modules -->
+  <div style="margin-top: 3rem;">
+    <div class="section-title">🚀 更多模块（即将上线）</div>
+    <div
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;"
+    >
+      <div class="coming-soon">
+        <span class="emoji">📡</span>
+        <h3
+          style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;"
+        >
+          NICE 动态追踪
+        </h3>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.6;">
+          自动追踪 NICE 最新指南更新、Value Set 发布、审批动态
+        </p>
+      </div>
+
+      <div class="coming-soon">
+        <span class="emoji">🏛️</span>
+        <h3
+          style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;"
+        >
+          英国研究中心
+        </h3>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.6;">
+          梳理英国各大学健康经济学团队、研究方向、项目进展
+        </p>
+      </div>
+
+      <div class="coming-soon">
+        <span class="emoji">💼</span>
+        <h3
+          style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;"
+        >
+          业界机会
+        </h3>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.6;">
+          药企、CRO、咨询公司健康经济学岗位、薪资范围、发展路径
+        </p>
+      </div>
+
+      <div class="coming-soon">
+        <span class="emoji">📖</span>
+        <h3
+          style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;"
+        >
+          期刊追踪
+        </h3>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.6;">
+          HEOR 顶刊（Value in Health、Pharmacoeconomics）最新发表
+        </p>
+      </div>
+    </div>
+  </div>
+</Base>

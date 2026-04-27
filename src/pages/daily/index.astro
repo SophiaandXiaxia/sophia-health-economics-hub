@@ -1,0 +1,59 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+const allDaily = await getCollection("daily");
+const sortedDaily = allDaily.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("zh-CN", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<Base title="📅 每日小知识存档 | 健康经济学知识站">
+  <div class="section-title">📅 每日小知识存档</div>
+  <p
+    style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 2rem; margin-top: -0.5rem;"
+  >
+    共 {sortedDaily.length} 篇 · 持续更新中
+  </p>
+
+  <div>
+    {
+      sortedDaily.map((post) => (
+        <div class="card">
+          <a href={`/daily/${post.id.replace(/\.md$/, "")}`}>
+            <div class="article-meta">
+              <time datetime={post.data.date.toISOString()}>
+                {formatDate(post.data.date)}
+              </time>
+            </div>
+            <h3
+              style="font-size: 1.05rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.4rem; font-family: 'Noto Serif SC', serif;"
+            >
+              {post.data.title}
+            </h3>
+            {post.data.summary && (
+              <p
+                style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;"
+              >
+                {post.data.summary}
+              </p>
+            )}
+            <div style="margin-top: 0.75rem;">
+              {post.data.tags?.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</Base>
