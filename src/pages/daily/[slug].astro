@@ -2,6 +2,8 @@
 import Base from "../../layouts/Base.astro";
 import { getCollection, render } from "astro:content";
 
+const BASE = "/sophia-health-economics-hub";
+
 export async function getStaticPaths() {
   const posts = await getCollection("daily");
   return posts.map((post) => ({
@@ -23,14 +25,14 @@ function formatDate(date: Date) {
 ---
 
 <Base title={`${post.data.title} | 健康经济学知识站`}>
-  <a href="/daily" class="back-link">← 返回存档</a>
+  <a href={`${BASE}/daily`} class="back-link">← 返回存档</a>
 
   <div class="article-meta">
     <time datetime={post.data.date.toISOString()}>
       🗓️ {formatDate(post.data.date)}
     </time>
     <span>·</span>
-    <span>🦐 每日小知识</span>
+    <span>🦞 每日小知识</span>
   </div>
 
   <article class="article">
@@ -38,6 +40,6 @@ function formatDate(date: Date) {
   </article>
 
   <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
-    <a href="/daily" class="back-link">← 查看更多小知识</a>
+    <a href={`${BASE}/daily`} class="back-link">← 查看更多小知识</a>
   </div>
 </Base>
