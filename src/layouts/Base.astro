@@ -8,6 +8,8 @@ const {
   title = "🦞 健康经济学知识站",
   description = "每日健康经济学小知识，助你成为资深健康经济学专家",
 } = Astro.props;
+
+const BASE = "/sophia-health-economics-hub";
 ---
 
 <!doctype html>
@@ -427,10 +429,10 @@ const {
 
     <nav class="site-nav">
       <ul>
-        <li><a href="/" class="active">🏠 首页</a></li>
-        <li><a href="/daily">📅 每日小知识</a></li>
-        <li><a href="/news">📰 NICE 动态</a></li>
-        <li><a href="/resources">📚 学习资源</a></li>
+        <li><a href={`${BASE}/`} class="active">🏠 首页</a></li>
+        <li><a href={`${BASE}/daily`}>📅 每日小知识</a></li>
+        <li><a href={`${BASE}/news`}>📰 NICE 动态</a></li>
+        <li><a href={`${BASE}/resources`}>📚 学习资源</a></li>
       </ul>
     </nav>
 
