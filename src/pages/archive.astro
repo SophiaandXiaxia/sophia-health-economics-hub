@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Project Archive">
+    <h1>📁 Project Archive</h1>
+    <p>Welcome to the Project Archive. This section documents our research projects and related resources.</p>
+    
+    <div class="project-grid">
+        <div class="project-card">
+            <h2>🏥 CADET Study</h2>
+            <p>Community long-term catheter cost-effectiveness RCT</p>
+            <a href="/archive/cadet">View Project →</a>
+        </div>
+    </div>
+</Base>
+
+<style>
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    .project-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1.5rem;
+        background: #fafafa;
+    }
+    .project-card h2 {
+        margin-top: 0;
+    }
+    .project-card a {
+        display: inline-block;
+        margin-top: 1rem;
+        color: #0066cc;
+        text-decoration: none;
+    }
+</style>
