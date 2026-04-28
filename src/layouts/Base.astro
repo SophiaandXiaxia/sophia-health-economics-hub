@@ -3,7 +3,7 @@ interface Props {
   title?: string;
   description?: string;
 }
-const { title = "🦞 健康经济学知识站", description = "每日健康经济学小知识 · 萨里大学健康经济学中心" } = Astro.props;
+const { title = "🦞 健康经济学知识站", description = "每日健康经济学小知识，助你成为资深健康经济学专家" } = Astro.props;
 const BASE = import.meta.env.BASE_URL;
 ---
 <!DOCTYPE html>
@@ -11,28 +11,28 @@ const BASE = import.meta.env.BASE_URL;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title}</title>
+  <title>{title} | Health Economics Hub</title>
   <meta name="description" content={description}>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="site-header">
-    <div class="header-content">
-      <h1 class="site-title">🦞</h1>
-      <p class="site-subtitle">健康经济学知识站</p>
-    </div>
-    <div class="lobster-float">🦞</div>
+    <h1>🦞</h1>
+    <p>
+      {title}<br>
+      <small>每天一个小知识，陪你成长为资深健康经济学专家 🦞</small>
+    </p>
+    <div class="lobster-bg">🦞</div>
   </header>
   
-  <nav class="main-nav">
-    <div class="nav-container">
-      <a href={`${BASE}/`}>首页</a>
-      <a href={`${BASE}/daily`}>每日小知识</a>
-      <a href={`${BASE}/news`}>NICE动态</a>
-      <a href={`${BASE}/resources`}>学习资源</a>
-      <a href={`${BASE}/archive`} style="background: #059669; color: white;">📁 项目档案</a>
-    </div>
+  <nav class="site-nav">
+    <ul>
+      <li><a href={`${BASE}/`}>🏠 首页</a></li>
+      <li><a href={`${BASE}/daily`}>📅 每日小知识</a></li>
+      <li><a href={`${BASE}/toolkit`}>🔧 实用工具箱</a></li>
+      <li><a href={`${BASE}/news`}>📰 NICE 动态</a></li>
+    </ul>
   </nav>
   
   <main class="main-content">
@@ -40,8 +40,7 @@ const BASE = import.meta.env.BASE_URL;
   </main>
   
   <footer class="site-footer">
-    <p>WorkBuddy AI 驱动 · 萨里大学健康经济学中心</p>
-    <p class="footer-sub">University of Surrey · Health Economics</p>
+    <p>Powered by WorkBuddy · University of Surrey Health Economics</p>
   </footer>
 </body>
 </html>
@@ -53,74 +52,72 @@ const BASE = import.meta.env.BASE_URL;
     --color-primary-light: #14b8a6;
     --color-accent: #059669;
     --color-bg: #f0fdfa;
-    --color-bg-gradient: linear-gradient(135deg, #ccfbf1 0%, #f0fdfa 50%, #d1fae5 100%);
+    --color-bg-alt: #ccfbf1;
     --color-card: #ffffff;
     --color-text: #134e4a;
     --color-text-muted: #5eead4;
     --color-border: #99f6e4;
-    --color-tag-bg: #ccfbf1;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Noto Sans SC', sans-serif;
-    background: var(--color-bg);
-    background-image: var(--color-bg-gradient);
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #ccfbf1 0%, #f0fdfa 40%, #d1fae5 100%);
     min-height: 100vh;
     color: var(--color-text);
-    line-height: 1.6;
+    line-height: 1.7;
   }
   .site-header {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
     color: white;
-    padding: 2rem 1rem;
     text-align: center;
+    padding: 2.5rem 1rem 3rem;
     position: relative;
     overflow: hidden;
   }
-  .header-content { position: relative; z-index: 1; }
-  .site-title { font-size: 3rem; margin-bottom: 0.5rem; }
-  .site-subtitle { font-size: 1.25rem; opacity: 0.9; }
-  .lobster-float {
+  .site-header h1 { font-size: 3.5rem; margin-bottom: 0.5rem; }
+  .site-header p { font-size: 1.1rem; opacity: 0.95; line-height: 1.8; }
+  .site-header small { opacity: 0.8; font-size: 0.95rem; }
+  .lobster-bg {
     position: absolute;
-    font-size: 4rem;
-    top: -1rem;
-    right: 2rem;
-    animation: float 3s ease-in-out infinite;
-    opacity: 0.3;
+    font-size: 10rem;
+    opacity: 0.1;
+    right: -2rem;
+    bottom: -2rem;
+    transform: rotate(-15deg);
   }
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
-  }
-  .main-nav {
+  .site-nav {
     background: white;
-    padding: 0.75rem 1rem;
+    padding: 0;
     box-shadow: 0 2px 8px rgba(15, 118, 110, 0.1);
     position: sticky;
     top: 0;
     z-index: 100;
   }
-  .nav-container {
-    max-width: 800px;
+  .site-nav ul {
+    max-width: 900px;
     margin: 0 auto;
     display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
+    list-style: none;
+    border-bottom: 3px solid var(--color-border);
   }
-  .nav-container a {
+  .site-nav a {
+    display: block;
+    padding: 1rem 1.5rem;
     color: var(--color-text);
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
     font-weight: 500;
     transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
   }
-  .nav-container a:hover { background: var(--color-tag-bg); }
+  .site-nav a:hover {
+    color: var(--color-primary);
+    background: var(--color-bg-alt);
+  }
   .main-content {
     max-width: 900px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem;
   }
   .site-footer {
     background: var(--color-primary);
@@ -129,45 +126,29 @@ const BASE = import.meta.env.BASE_URL;
     padding: 2rem 1rem;
     margin-top: 3rem;
   }
-  .footer-sub { opacity: 0.7; font-size: 0.9rem; margin-top: 0.5rem; }
   h1 { color: var(--color-primary); margin-bottom: 1rem; }
-  h2 { color: var(--color-primary-dark); margin: 1.5rem 0 0.75rem; }
+  h2 { color: var(--color-primary-dark); margin: 1.5rem 0 0.75rem; font-size: 1.5rem; }
   h3 { color: var(--color-text); }
   .card {
     background: var(--color-card);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 1.5rem;
-    margin: 1rem 0;
-    box-shadow: 0 2px 12px rgba(15, 118, 110, 0.08);
+    margin: 1.25rem 0;
+    box-shadow: 0 4px 16px rgba(15, 118, 110, 0.08);
     border: 1px solid var(--color-border);
-    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(15, 118, 110, 0.15); }
-  .hero-card { background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%); color: white; }
   .tag {
     display: inline-block;
-    background: var(--color-tag-bg);
+    background: var(--color-bg-alt);
     color: var(--color-primary-dark);
     padding: 0.25rem 0.75rem;
-    border-radius: 12px;
+    border-radius: 20px;
     font-size: 0.85rem;
-    margin: 0.25rem;
+    margin: 0.2rem;
   }
-  .hero-card .tag { background: rgba(255,255,255,0.2); color: white; }
-  .section-title {
-    color: var(--color-primary);
-    font-weight: 700;
-    margin: 2rem 0 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--color-border);
-  }
-  .article { max-width: 700px; }
-  .article p { margin: 1rem 0; }
-  .article ul, .article ol { margin: 1rem 0 1rem 1.5rem; }
-  .article li { margin: 0.5rem 0; }
   @media (max-width: 640px) {
-    .site-title { font-size: 2rem; }
-    .nav-container { gap: 0.5rem; }
-    .nav-container a { padding: 0.4rem 0.75rem; font-size: 0.9rem; }
+    .site-header h1 { font-size: 2.5rem; }
+    .site-nav ul { flex-wrap: wrap; }
+    .site-nav a { padding: 0.75rem 1rem; font-size: 0.9rem; }
   }
 </style>
