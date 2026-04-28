@@ -1,0 +1,129 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="CADET Study">
+    <h1>🏥 CADET Study</h1>
+    <p class="subtitle">Community long-term catheter cost-effectiveness RCT</p>
+    
+    <!-- Section 1: Study Protocol -->
+    <section class="protocol-section">
+        <h2>📋 Study Overview</h2>
+        <table class="protocol-table">
+            <tr><th>Full Title</th><td>Cost-effectiveness of antimicrobial catheters for long-term use in the community</td></tr>
+            <tr><th>NIHR Number</th><td>131172</td></tr>
+            <tr><th>ISRCTN</th><td>ISRCTN11092188</td></tr>
+            <tr><th>IRAS Number</th><td>316986</td></tr>
+            <tr><th>CTU</th><td>Southampton Clinical Trials Unit</td></tr>
+            <tr><th>Funder</th><td>NIHR (National Institute for Health and Care Research)</td></tr>
+            <tr><th>Study Type</th><td>Randomised Controlled Trial (RCT)</td></tr>
+            <tr><th>Population</th><td>Adults requiring long-term indwelling catheters in the community</td></tr>
+            <tr><th>Intervention</th><td>Antimicrobial-coated catheters (e.g., OptiTip)</td></tr>
+            <tr><th>Control</th><td>Standard catheters</td></tr>
+            <tr><th>Primary Outcome</th><td>CAUTI incidence; Cost-effectiveness</td></tr>
+            <tr><th>Status</th><td>[To be updated]</td></tr>
+            <tr><th>Publications</th><td>[To be added]</td></tr>
+            <tr><th>Contact</th><td>[To be added]</td></tr>
+            <tr><th>Last Updated</th><td>2026-04-28</td></tr>
+        </table>
+    </section>
+
+    <!-- Section 2: Catheter Overview -->
+    <section class="overview-section">
+        <h2>🔬 Catheter Overview</h2>
+        <div class="card-grid">
+            <div class="info-card">
+                <h3>📖 Definition</h3>
+                <p>An indwelling catheter (Foley catheter) is a catheter retained in the bladder by a balloon, providing continuous drainage.</p>
+            </div>
+            <div class="info-card">
+                <h3>📚 Key Guidelines</h3>
+                <ul>
+                    <li><a href="https://www.nice.org.uk/guidance/ng139" target="_blank">NICE NG139 - Infection prevention and control</a></li>
+                    <li><a href="https://www.nice.org.uk/guidance/qs61" target="_blank">NICE QS61 - Infection prevention and control</a></li>
+                    <li><a href="https://www.nhs.uk/tests-and-treatments/urinary-catheters/" target="_blank">NHS Urinary Catheters Overview</a></li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>📊 UK Epidemiology</h3>
+                <p>~1.2 million community users of indwelling catheters in England (epidemiological data)</p>
+            </div>
+            <div class="info-card">
+                <h3>📦 Catheter Classification</h3>
+                <ul>
+                    <li><strong>Intermittent:</strong> Inserted for drainage, then removed</li>
+                    <li><strong>Indwelling (Foley):</strong> Balloon-retained, long-term use</li>
+                    <li><strong>Suprapubic:</strong> Inserted through abdomen</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>🏭 Market & Products</h3>
+                <ul>
+                    <li>OptiTip (antimicrobial-coated)</li>
+                    <li>Standard silicone/latex catheters</li>
+                    <li>Hydrophilic-coated catheters</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>🔬 RCTs in Pipeline</h3>
+                <p>CADET Study - antimicrobial vs standard catheters for CAUTI prevention</p>
+            </div>
+        </div>
+    </section>
+</Base>
+
+<style>
+    .subtitle {
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    section {
+        margin-bottom: 3rem;
+    }
+    h2 {
+        border-bottom: 2px solid #0066cc;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .protocol-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+    }
+    .protocol-table th, .protocol-table td {
+        border: 1px solid #ddd;
+        padding: 0.75rem;
+        text-align: left;
+    }
+    .protocol-table th {
+        background: #f5f5f5;
+        width: 25%;
+        font-weight: 600;
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    .info-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1.25rem;
+        background: #fafafa;
+    }
+    .info-card h3 {
+        margin-top: 0;
+        color: #0066cc;
+        font-size: 1rem;
+    }
+    .info-card ul {
+        padding-left: 1.25rem;
+    }
+    .info-card li {
+        margin-bottom: 0.5rem;
+    }
+    a {
+        color: #0066cc;
+    }
+</style>
